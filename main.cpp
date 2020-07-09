@@ -15,7 +15,7 @@ int main(int argc, char **argv) {
     SDL_Window *win = SDL_CreateWindow("Mandelbrot Set",
             SDL_WINDOWPOS_CENTERED,
             SDL_WINDOWPOS_CENTERED,
-            800, 600,
+            200, 200,
             SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
     SDL_GLContext cont = SDL_GL_CreateContext(win);
 
@@ -28,9 +28,9 @@ int main(int argc, char **argv) {
     char *fragment_shader = (char*) malloc(fragment_shader_fs * sizeof(char));
     for (int i = 0; i < fragment_shader_fs; ++i) {
         fragment_shader[i] = fgetc(fragment_shader_fp);
-        //cout << (int)fragment_shader[i] << '\n';
+        cout << (int)fragment_shader[i] << '\n';
     }
-    //fragment_shader[fragment_shader_fs - 1] = '\0';
+    fragment_shader[fragment_shader_fs - 1] = '\0';
 
     fclose(fragment_shader_fp);
 
@@ -73,9 +73,9 @@ int main(int argc, char **argv) {
     glClearColor(0., 1., 0., 1.);
 
     // Mainloop
-    float mandelbrotHeight  = 3.5f;
-    float mandelbrotCenterX = 0.f;
-    float mandelbrotCenterY = 0.f;
+    double mandelbrotHeight  = 3.5f;
+    double mandelbrotCenterX = 0.f;
+    double mandelbrotCenterY = 0.f;
 
     float last_time = SDL_GetTicks() / 1000.;
     SDL_Event e;
@@ -114,11 +114,11 @@ int main(int argc, char **argv) {
 
         // Setting the uniform values
         glUniform1f(uTime, time);
-        glUniform2f(uResolution, (float) width, (float) height);
+        glUniform2i(uResolution, width, height);
 
         // Set mandelbrot set setting uniform values
-        glUniform2f(uMandelbrotCenter, mandelbrotCenterX, mandelbrotCenterY);
-        glUniform1f(uMandelbrotHeight, mandelbrotHeight);
+        glUniform2d(uMandelbrotCenter, mandelbrotCenterX, mandelbrotCenterY);
+        glUniform1d(uMandelbrotHeight, mandelbrotHeight);
 
         // Draw
         glClear(GL_COLOR_BUFFER_BIT);
