@@ -1,8 +1,11 @@
 LIBS=-lGL -lSDL2
-WARNS=-Wall
+WARNS=-Wall -Wextra -Wpedantic
 CFLAGS=$(WARNS) $(LIBS) -O3 -g0
-all:
+
+all: mandelbrot.out
+
+mandelbrot.out: main.cpp
 	g++ main.cpp $(CFLAGS) -o mandelbrot.out
 
-run:
+run: mandelbrot.out
 	./mandelbrot.out
