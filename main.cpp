@@ -3,7 +3,6 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_opengl.h>
 
-#include <iostream>
 #include <string>
 
 using namespace std;
@@ -28,7 +27,6 @@ int main(int argc, char **argv) {
     char *fragment_shader = (char*) malloc(fragment_shader_fs * sizeof(char));
     for (int i = 0; i < fragment_shader_fs; ++i) {
         fragment_shader[i] = fgetc(fragment_shader_fp);
-        cout << (int)fragment_shader[i] << '\n';
     }
     fragment_shader[fragment_shader_fs - 1] = '\0';
 
@@ -47,7 +45,6 @@ int main(int argc, char **argv) {
     glGetShaderiv(shader, GL_INFO_LOG_LENGTH, &len);
     char *errlog = (char*) malloc(len * sizeof(char));
     glGetShaderInfoLog(shader, len, &len, errlog);
-    cerr << errlog << '\n';
 
     if (success == GL_FALSE) {
         glDeleteShader(shader);
