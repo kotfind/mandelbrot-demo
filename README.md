@@ -1,12 +1,24 @@
 # Mandelbrot set
-## Compilation
+
+Simple mandelbrot set demo written in C++ with SDL2 library.
+
+![Preview Image 1](preview1.jpg)
+![Preview Image 2](preview2.jpg)
+![Preview Image 3](preview3.jpg)
+
+## Compile
 `
 make
 `
 
-## Running program
+## Run
 `
 make run
+`
+
+## Clean
+`
+make clean
 `
 
 ## Controls
@@ -17,8 +29,3 @@ make run
 | Left Ctrl  | slow down   |
 | E or +     | zoom in     |
 | Q or -     | zoom out    |
-
-## Cleaning
-`
-make clean
-`
